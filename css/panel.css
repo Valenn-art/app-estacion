@@ -1,9 +1,7 @@
 .panel-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 24px;
 }
-
 .panel-container h1 {
     text-align: center;
     color: var(--text);

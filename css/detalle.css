@@ -135,7 +135,42 @@
     margin: 6px 0;
 }
 
-/* Responsive */
+
+.grafico-container {
+    margin-top: 20px;
+    height: 200px;
+    position: relative;
+}
+
+.ultima-actualizacion {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    color: #888;
+    font-size: 0.9em;
+}
+
+.ultima-actualizacion span {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+
+.dato-card {
+    min-height: 400px;
+}
+
+@media (max-width: 768px) {
+    .grafico-container {
+        height: 180px;
+    }
+    
+    .dato-card {
+        min-height: 350px;
+    }
+}
 @media (max-width: 768px) {
     .detalle-container {
         padding: 24px 20px;
