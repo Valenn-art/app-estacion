@@ -1,0 +1,181 @@
+.detalle-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 24px;
+    position: relative;
+}
+
+.btn-volver {
+    position: absolute;
+    top: 50px;
+    right: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: white;
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary);
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.btn-volver::before {
+    content: '←';
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-volver:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+.btn-volver:hover::before {
+    transform: translateX(-3px);
+}
+
+.btn-volver:active {
+    transform: translateY(0);
+}
+
+.estacion-header-info {
+    background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+    padding: 30px;
+    padding-right: 160px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    border: 2px solid var(--border);
+    position: relative;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.estacion-header-info h2 {
+    color: var(--text);
+    font-size: 1.75rem;
+    margin-bottom: 12px;
+    font-weight: 800;
+}
+
+.estacion-header-info p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin: 6px 0;
+}
+
+.datos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.dato-card {
+    background: var(--bg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.dato-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--shadow);
+}
+
+.dato-card h3 {
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.dato-valor {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 12px 0;
+}
+
+.dato-minmax {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.dato-minmax span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: var(--bg-gray);
+    border-radius: 10px;
+}
+
+.dato-extra {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin: 6px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .detalle-container {
+        padding: 24px 20px;
+    }
+    
+    .btn-volver {
+        position: static;
+        margin: 0 auto 20px;
+        width: fit-content;
+    }
+    
+    .estacion-header-info {
+        padding: 24px 20px;
+        min-height: auto;
+    }
+    
+    .estacion-header-info h2 {
+        font-size: 1.5rem;
+    }
+    
+    .datos-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    
+    .dato-card {
+        padding: 18px;
+    }
+    
+    .dato-valor {
+        font-size: 1.75rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .datos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .estacion-header-info {
+        padding-right: 140px;
+    }
+}

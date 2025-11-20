@@ -1,0 +1,8 @@
+@@ -0,0 +1,7 @@
+env.php
+.DS_Store
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
