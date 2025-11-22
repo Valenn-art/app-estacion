@@ -1,0 +1,153 @@
+.panel-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.panel-container h1 {
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 40px;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.lista-estaciones {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.estacion-item {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.estacion-btn {
+    display: block;
+    padding: 20px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.estacion-btn:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--shadow);
+}
+
+.estacion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 12px;
+}
+
+.estacion-apodo {
+    color: var(--primary);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    flex: 1;
+}
+
+.estacion-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-gray);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.num-visitas {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.estacion-ubicacion {
+    color: var(--text-light);
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.estacion-ubicacion::before {
+    content: '📍';
+    margin-right: 6px;
+}
+
+.estacion-footer {
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.estacion-estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+.estacion-estado.activo {
+    color: var(--primary);
+    background: rgba(233, 30, 99, 0.1);
+}
+
+.estacion-estado.inactivo {
+    color: var(--text-light);
+    background: var(--bg-gray);
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.estacion-estado.activo .dot {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+@media (max-width: 768px) {
+    .panel-container {
+        padding: 30px 20px;
+    }
+    
+    .panel-container h1 {
+        font-size: 1.75rem;
+        margin-bottom: 30px;
+    }
+    
+    .lista-estaciones {
+        grid-template-columns: 1fr;
+    }
+}
