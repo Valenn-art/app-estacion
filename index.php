@@ -1,7 +1,14 @@
 <?php
 require_once 'env.php';
-require_once 'controllers/estacionController.php';
 require_once 'models/estacionModel.php';
+require_once 'models/usuarioModel.php';
+require_once 'models/MailerService.php';
+require_once 'models/SessionManager.php';
+require_once 'models/UserAgentHelper.php';
+require_once 'controllers/estacionController.php';
+require_once 'controllers/AuthController.php';
+
+SessionManager::iniciar();
 
 $route = '';
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -14,29 +21,57 @@ if (strpos($uri, $basePath) === 0) {
 }
 $route = trim($route, '/');
 
-// Modo debug opcional: muestra la ruta calculada
 if (isset($_GET['__debug_route']) && $_GET['__debug_route'] === '1') {
     header('Content-Type: text/plain; charset=utf-8');
     echo "BASE_PATH: " . $basePath . "\n";
     echo "REQUEST_URI: " . $uri . "\n";
     echo "CALCULATED_ROUTE: " . $route . "\n";
     echo "SCRIPT_NAME: " . $_SERVER['SCRIPT_NAME'] . "\n";
+    echo "LOGGED_IN: " . (SessionManager::estaLogueado() ? 'YES' : 'NO') . "\n";
     exit;
 }
 
-// Instanciar controller
-$controller = new EstacionController();
+$estacionController = new EstacionController();
+$authController = new AuthController();
 
-// Rutas disponibles
+
 if ($route === '' || $route === 'landing') {
-    $controller->landing();
+    $estacionController->landing();
+    
 } elseif ($route === 'panel') {
-    $controller->panel();
+    $estacionController->panel();
+    
 } elseif (strpos($route, 'detalle/') === 0) {
     $chipid = substr($route, 8); 
-    $controller->detalle($chipid);
+    $estacionController->detalle($chipid);
+
+
+} elseif ($route === 'login') {
+    $authController->login();
+
+} elseif ($route === 'register') {
+    $authController->register();
+
+} elseif (strpos($route, 'validate/') === 0) {
+    $tokenAction = substr($route, 9);
+    $authController->validate($tokenAction);
+
+} elseif ($route === 'recovery') {
+    $authController->recovery();
+
+} elseif (strpos($route, 'reset/') === 0) {
+    $tokenAction = substr($route, 6);
+    $authController->reset($tokenAction);
+
+} elseif (strpos($route, 'blocked/') === 0) {
+    $token = substr($route, 8);
+    $authController->blocked($token);
+
+} elseif ($route === 'logout') {
+    $authController->logout();
+
 } else {
     header("HTTP/1.0 404 Not Found");
-    $controller->landing();
+    $estacionController->landing();
 }
 ?>
